@@ -1,0 +1,13 @@
+cree moi une table qui va recevoir les donnees des identites de la population avec comme champ
+- id
+-cni
+-passportId
+-permisCId
+-nom
+-Prenom
+-sexe
+-lieuNais
+-DateNais
+-adresse
+-nompere
+-nommere

@@ -1,0 +1,443 @@
+{
+  "id_projet": "elect27-webapp",
+  "phase_actuelle": "developpement",
+  "taches": [
+    {
+      "id": "plan-001",
+      "titre": "Specification des exigences fonctionnelles et backlog",
+      "agent_assigne": "planificateur",
+      "statut": "pass",
+      "tentatives": 1,
+      "dernier_rapport": "Specifications techniques, backlog et architecture initiale generes"
+    },
+    {
+      "id": "arch-001",
+      "titre": "Definir la stack technique et le schema BDD",
+      "agent_assigne": "architecte-ux",
+      "statut": "pass",
+      "tentatives": 1,
+      "dernier_rapport": "Architecture design system avec tokens DTCG crees"
+    },
+    {
+      "id": "dev-001",
+      "titre": "Developpement Frontend - Structure HTML/CSS/JS",
+      "agent_assigne": "developpeur",
+      "statut": "pass",
+      "tentatives": 1,
+      "dernier_rapport": "Pages index.html, recherche.html, carte.html avec Tailwind CSS"
+    },
+    {
+      "id": "dev-002",
+      "titre": "Developpement Backend - API Flask",
+      "agent_assigne": "developpeur",
+      "statut": "pass",
+      "tentatives": 1,
+      "dernier_rapport": "API Flask avec routes recherche, geolocalisation, itineraire, notifications, admin, inscription CNI"
+    },
+    {
+      "id": "dev-003",
+      "titre": "Base de donnees PostgreSQL + Migration",
+      "agent_assigne": "developpeur",
+      "statut": "pass",
+      "tentatives": 1,
+      "dernier_rapport": "Schema BDD 11 tables (dont cartes_identite) avec migrations et seeds"
+    },
+    {
+      "id": "dev-004",
+      "titre": "Frontend Inscription electorale + Dashboard admin",
+      "agent_assigne": "developpeur",
+      "statut": "pass",
+      "tentatives": 1,
+      "dernier_rapport": "Page inscription.html (3 etapes, verification CNI) et admin/index.html (carte electeurs par centre)"
+    },
+    {
+      "id": "doc-001",
+      "titre": "Mise a jour documentation projet et presentation",
+      "agent_assigne": "redacteur-technique",
+      "statut": "pass",
+      "tentatives": 1,
+      "dernier_rapport": "README, specifications v1.1, backlog (epic inscription), architecture et Presentation_Elect27.pptx alignes sur l'etat reel du code"
+    },
+    {
+      "id": "test-001",
+      "titre": "Tests unitaires et integration",
+      "agent_assigne": "testeur-qa",
+      "statut": "fail",
+      "tentatives": 1,
+      "dernier_rapport": "FAIL 40/185 (145 verts, 0 flaky): 11 integration (415 HTML vs 400 JSON, lat/lng 0.0 rejetes, validations manquantes, compteur fige, 422 JWT) + 14 securite (XSS stocke, secrets en dur, debug=True, CORS *, mots de passe en clair, en-tetes manquants) + 15 a11y (h1, 32 labels, contrastes) - suites dans C:\\Users\\SMP_Solution\\AppData\\Local\\Temp\\elect27-tests - PyJWT a pinner==2.8.0"
+    },
+    {
+      "id": "dev-005",
+      "titre": "Remplacement du logo SVG par l'image img/images.jpeg sur toutes les pages",
+      "agent_assigne": "developpeur",
+      "statut": "pass",
+      "tentatives": 2,
+      "dernier_rapport": "Correction A appliquee: frontend/img/images.jpeg cree (SHA256 identique), 7 chemins reecrits, alt decoratif, ratio width/height corrige - valides par test-005"
+    },
+    {
+      "id": "test-005",
+      "titre": "Verification du remplacement du logo (affichage, chemins, regressions UI)",
+      "agent_assigne": "testeur-qa",
+      "statut": "pass",
+      "tentatives": 2,
+      "dernier_rapport": "PASS 8/8 points - 7/7 logos en 200 depuis la racine web frontend/, SHA256 copie identique, HTML valide, a11y OK, gabarit conserve, aucun SVG de marque residuel"
+    },
+    {
+      "id": "sec-005",
+      "titre": "Revue securite du changement logo (assets statiques, chemins, injection)",
+      "agent_assigne": "securite",
+      "statut": "pass",
+      "tentatives": 1,
+      "dernier_rapport": "PASS - 7 balisages statiques sans injection, path traversal confine a la racine web frontend/ (montage nginx :ro), asset identique octet-a-octet a la source, aucune URL distante ni secret introduit, perimetre respecte"
+    },
+    {
+      "id": "pentest-005",
+      "titre": "Pentest cible sur la livraison logo (traversal, hotlink, abus d'asset)",
+      "agent_assigne": "pentester",
+      "statut": "pass",
+      "tentatives": 1,
+      "dernier_rapport": "PASS - 5 scenarios bloques/non applicables: traversal 404 hors racine (meme double encodage et backslash), asset SHA256 677c...d06b5 sain sans payload (magic bytes JPEG, EOI propre), aucun hotlink, content-type image/jpeg + nosniff en prod, balises 100% litterales sans XSS"
+    },
+    {
+      "id": "rev-005",
+      "titre": "Revue finale de la livraison remplacement du logo",
+      "agent_assigne": "reviseur",
+      "statut": "en_cours",
+      "tentatives": 2,
+      "dernier_rapport": "Relance apres validation humaine ('continue') - ECHEC infrastructure #1 du nouveau cycle (meme erreur 'OpenCode free tier can only be used from within OpenCode', aucun verdict produit) - 2 tentatives restantes avant nouvelle escalade, replanifiee apres la boucle dev-006"
+    },
+    {
+      "id": "mig-001",
+      "titre": "Creation du schema PostgreSQL (11 tables + index) dans la base elect27 via MCP Postgres",
+      "agent_assigne": "agent-migrateur-bdd",
+      "statut": "pass",
+      "tentatives": 1,
+      "dernier_rapport": "PASS - 11 tables + 8 index idx_* + 26 contraintes (11 PK / 7 FK / 8 UNIQUE) creees dans elect27 par transaction idempotente, 0 donnee inseree, script de tracabilite database/migrations/sql/001_initial.sql - methode: repli psql (MCP postgres-elect non expose aux outils de l'agent)"
+    },
+    {
+      "id": "dev-006",
+      "titre": "Corrections des 40 echecs test-001 (securite P1, contrat API P2, accessibilite P3, headers P4)",
+      "agent_assigne": "developpeur",
+      "statut": "todo",
+      "tentatives": 0,
+      "dernier_rapport": "Replanifiee apres dev-007 - priorite utilisateur du 2026-10-01: branchement BDD d'abord"
+    },
+    {
+      "id": "mig-002",
+      "titre": "Preparation acces BDD: creation du role elect27 + grants sur la base elect27 + verification connexion",
+      "agent_assigne": "agent-migrateur-bdd",
+      "statut": "pass",
+      "tentatives": 1,
+      "dernier_rapport": "PASS - role elect27 LOGIN cree (mot de passe 'password' conforme .env/docker-compose), GRANT CONNECT/USAGE/SELECT/INSERT/UPDATE/DELETE (44 grants sur 11 tables + sequences + default privileges) - preuves: connexion psql -U elect27 en scram OK, droits ecriture valides en transaction ROLLBACK (0 donnee persistee), schema et donnees inchanges - repli psql (MCP postgres-elect non expose)"
+    },
+    {
+      "id": "dev-007",
+      "titre": "Branchement du backend Flask a PostgreSQL (fin du mode demo, seeds complets, blueprints)",
+      "agent_assigne": "developpeur",
+      "statut": "todo",
+      "tentatives": 0,
+      "dernier_rapport": ""
+    }
+  ],
+  "validations_humaines_requises": ["planification", "avant_deploiement", "revue_dev-005_bloquee"],
+  "log": [
+    {
+      "horodatage": "2026-09-21T00:00:00Z",
+      "agent": "orchestrateur",
+      "action": "initialisation_projet",
+      "statut": "ok",
+      "detail": "Projet Elect27 Web App initialise"
+    },
+    {
+      "horodatage": "2026-09-21T00:01:00Z",
+      "agent": "orchestrateur",
+      "action": "phase_planification_terminee",
+      "statut": "ok",
+      "detail": "Specifications techniques, backlog et architecture initiale generes"
+    },
+    {
+      "horodatage": "2026-09-21T00:02:00Z",
+      "agent": "orchestrateur",
+      "action": "phase_architecture_terminee",
+      "statut": "ok",
+      "detail": "Architecture design system avec tokens DTCG crees"
+    },
+    {
+      "horodatage": "2026-09-21T00:03:00Z",
+      "agent": "orchestrateur",
+      "action": "phase_developpement_frontend_terminee",
+      "statut": "ok",
+      "detail": "Frontend HTML/CSS/Tailwind/JS avec pages principales"
+    },
+    {
+      "horodatage": "2026-09-21T00:04:00Z",
+      "agent": "orchestrateur",
+      "action": "phase_developpement_backend_terminee",
+      "statut": "ok",
+      "detail": "Backend Flask avec API REST complete"
+    },
+    {
+      "horodatage": "2026-09-21T00:05:00Z",
+      "agent": "orchestrateur",
+      "action": "phase_base_de_donnees_terminee",
+      "statut": "ok",
+      "detail": "Schema PostgreSQL avec migrations et seeds"
+    },
+    {
+      "horodatage": "2026-09-23T09:00:00Z",
+      "agent": "orchestrateur",
+      "action": "livraison_inscription_admin",
+      "statut": "ok",
+      "detail": "Inscription electorale 3 etapes (CNI) et dashboard admin avec carte electeurs livres"
+    },
+    {
+      "horodatage": "2026-09-23T09:30:00Z",
+      "agent": "orchestrateur",
+      "action": "mise_a_jour_documentation",
+      "statut": "ok",
+      "detail": "README.md, specifications_techniques.md (v1.1), backlog.md (epic 7), architecture_initiale.md et Presentation_Elect27.pptx mis a jour pour refleter l'etat reel du code"
+    },
+    {
+      "horodatage": "2026-09-23T09:31:00Z",
+      "agent": "orchestrateur",
+      "action": "transition_tests",
+      "statut": "en_cours",
+      "detail": "Tache test-001 ouverte - suite de tests unitaires et integration"
+    },
+    {
+      "horodatage": "2026-09-26T00:00:00Z",
+      "agent": "chef-de-cellule",
+      "action": "livraison_note_proposition",
+      "statut": "ok",
+      "detail": "Note de proposition Word (Note_de_proposition_Elect27.docx) adressee au Ministere de l'Interieur de la Republique du Congo - objet: mise en oeuvre du projet Elect27, initiative d'interet general strictement non commerciale, elections legislatives et locales 2027"
+    },
+    {
+      "horodatage": "2026-09-27T00:00:00Z",
+      "agent": "orchestrateur",
+      "action": "assignation_dev-005",
+      "statut": "en_cours",
+      "detail": "Tache dev-005 ouverte - remplacer le logo SVG par img/images.jpeg dans les en-tetes de index, recherche, carte, inscription et admin/index"
+    },
+    {
+      "horodatage": "2026-09-27T00:10:00Z",
+      "agent": "orchestrateur",
+      "action": "livraison_dev-005",
+      "statut": "pass",
+      "detail": "Logo SVG remplace par img/images.jpeg dans 7 emplacements (index header+footer, recherche, carte, inscription, admin topbar+login) - chemins relatifs verifies"
+    },
+    {
+      "horodatage": "2026-09-27T00:11:00Z",
+      "agent": "orchestrateur",
+      "action": "transition_tests",
+      "statut": "en_cours",
+      "detail": "Tache test-005 ouverte - verification affichage logo, chemins relatifs et absence de regression UI"
+    },
+    {
+      "horodatage": "2026-09-27T00:25:00Z",
+      "agent": "orchestrateur",
+      "action": "echec_test-005",
+      "statut": "fail",
+      "detail": "1 point KO sur 7: les 7 logos renvoient 404 en runtime car ../img/images.jpeg sort de la racine web frontend/ - retour developpement (tentative 2/3)"
+    },
+    {
+      "horodatage": "2026-09-27T00:26:00Z",
+      "agent": "orchestrateur",
+      "action": "reassignation_dev-005",
+      "statut": "en_cours",
+      "detail": "Correction A demandee au developpeur: copier img/images.jpeg dans frontend/img/ puis chemins img/images.jpeg (pages racine) et ../img/images.jpeg (admin)"
+    },
+    {
+      "horodatage": "2026-09-27T00:40:00Z",
+      "agent": "developpeur",
+      "action": "correction_dev-005",
+      "statut": "ok",
+      "detail": "frontend/img/images.jpeg cree (SHA256 identique source), 7 chemins reecrits, alt vide (decoratif, texte Elect27 adjacent), ratio width/height corrige - simulation serveur: /img/images.jpeg = 200"
+    },
+    {
+      "horodatage": "2026-09-27T00:41:00Z",
+      "agent": "orchestrateur",
+      "action": "retransition_tests",
+      "statut": "en_cours",
+      "detail": "Tache test-005 relancee - tentative 2/3"
+    },
+    {
+      "horodatage": "2026-09-27T00:55:00Z",
+      "agent": "orchestrateur",
+      "action": "pass_test-005",
+      "statut": "pass",
+      "detail": "PASS 8/8 - 7/7 logos en 200 depuis la racine web, SHA256 copie identique, HTML valide, a11y OK, gabarit conserve"
+    },
+    {
+      "horodatage": "2026-09-27T00:56:00Z",
+      "agent": "orchestrateur",
+      "action": "transition_securite_pentest",
+      "statut": "en_cours",
+      "detail": "sec-005 (@securite) et pentest-005 (@pentester) ouverts en parallele sur le perimetre du changement logo"
+    },
+    {
+      "horodatage": "2026-09-27T01:10:00Z",
+      "agent": "orchestrateur",
+      "action": "pass_securite_pentest",
+      "statut": "pass",
+      "detail": "sec-005 PASS (balisages statiques, traversal confine, asset sain) et pentest-005 PASS (5 scenarios bloques, SHA256 677c...d06b5, aucun hotlink) - passage a la revue autorise"
+    },
+    {
+      "horodatage": "2026-09-27T01:11:00Z",
+      "agent": "orchestrateur",
+      "action": "transition_revue",
+      "statut": "en_cours",
+      "detail": "Tache rev-005 ouverte - revue finale par @reviseur"
+    },
+    {
+      "horodatage": "2026-09-27T01:25:00Z",
+      "agent": "orchestrateur",
+      "action": "escalade_humaine_rev-005",
+      "statut": "bloque",
+      "detail": "3 echecs consecutifs de @reviseur (erreur infrastructure OpenCode free tier) - boucle arretee conformement aux regles, validation humaine requise pour cloturer la revue de dev-005"
+    },
+    {
+      "horodatage": "2026-09-27T10:00:00Z",
+      "agent": "orchestrateur",
+      "action": "assignation_mig-001",
+      "statut": "en_cours",
+      "detail": "Demande utilisateur: creer les tables du projet dans la base elect27 via MCP Postgres - base elect27 verifiee existante et vide (0 table) - tache mig-001 ouverte et deleguee a @migrateur-bdd"
+    },
+    {
+      "horodatage": "2026-09-27T10:20:00Z",
+      "agent": "orchestrateur",
+      "action": "pass_mig-001",
+      "statut": "pass",
+      "detail": "Schema cree dans elect27 et verifie par introspection independante: 11 tables, 8 index idx_*, 26 contraintes (11 PK / 7 FK / 8 UNIQUE), 0 donnee - script de tracabilite database/migrations/sql/001_initial.sql - methode reelle: repli psql (le serveur MCP postgres-elect n'etait pas expose comme outil) - phase rendue a revue (escalade rev-005 toujours en attente)"
+    },
+    {
+      "horodatage": "2026-09-27T11:00:00Z",
+      "agent": "orchestrateur",
+      "action": "validation_humaine_rev-005",
+      "statut": "ok",
+      "detail": "Validation humaine recue (commande 'continue') - levée de l'escalade rev-005, compteur d'echecs consecutifs remis a zero"
+    },
+    {
+      "horodatage": "2026-09-27T11:01:00Z",
+      "agent": "orchestrateur",
+      "action": "retransition_revue_et_tests",
+      "statut": "en_cours",
+      "detail": "rev-005 relancee aupres de @reviseur (tentative 1/3 du nouveau cycle) et test-001 (tests unitaires et integration, ouverte depuis le 2026-09-23 sans rapport) lancee aupres de @testeur-qa en parallele"
+    },
+    {
+      "horodatage": "2026-09-27T11:45:00Z",
+      "agent": "orchestrateur",
+      "action": "echec_test-001",
+      "statut": "fail",
+      "detail": "test-001 FAIL: 40/185 tests rouges (11 integration, 14 securite, 15 a11y), 145 verts, 0 flaky - transition tests=fail -> retour developpement (tentative 1/3)"
+    },
+    {
+      "horodatage": "2026-09-27T11:46:00Z",
+      "agent": "orchestrateur",
+      "action": "echec_infrastructure_rev-005",
+      "statut": "fail",
+      "detail": "1er echec infrastructure du nouveau cycle rev-005 (@reviseur, meme erreur 'OpenCode free tier can only be used from within OpenCode') - 2 tentatives restantes, revue replanifiee apres la boucle de corrections dev-006"
+    },
+    {
+      "horodatage": "2026-09-27T11:47:00Z",
+      "agent": "orchestrateur",
+      "action": "arbitrages_orchestrateur_sur_rapport_tests",
+      "statut": "ok",
+      "detail": "1) CORS: corriger via var env CORS_ORIGINS (defaut localhost:3000/5000/8080) - la dette '*' etait toleree en demo mais RS-004 prime; 2) compte demo admin: conserve (spec 7.1) mais affichage public frontend/admin/index.html:83 a retirer; 3) blueprints backend/routes non enregistres: hors perimetre, dette connue (branche PostgreSQL reporte); 4) score Lighthouse: non mesurable ici, reporte; 5) en-tetes securite: ajouter nosniff/X-Frame-Options/Referrer-Policy, CSP reste une dette"
+    },
+    {
+      "horodatage": "2026-09-27T11:48:00Z",
+      "agent": "orchestrateur",
+      "action": "assignation_dev-006",
+      "statut": "en_cours",
+      "detail": "Tache dev-006 ouverte - corrections des 40 echecs test-001 par @developpeur, verification par re-execution de la suite pytest temporaire"
+    },
+    {
+      "horodatage": "2026-10-01T16:10:00Z",
+      "agent": "orchestrateur",
+      "action": "diagnostic_branchement_bdd",
+      "statut": "ok",
+      "detail": "Demande utilisateur: 'lier le projet a la base de donnees' - diagnostic: base elect27 OK (11 tables, 0 ligne), role elect27 INEXISTANT (auth echouee, seul postgres existe), backend en mode demo (donnees memoire, blueprints non enregistres), seeds init.sql corrompus en encodage et incomplets (electeurs/cartes/notifications/admin_users non peuples)"
+    },
+    {
+      "horodatage": "2026-10-01T16:11:00Z",
+      "agent": "orchestrateur",
+      "action": "assignation_mig-002",
+      "statut": "en_cours",
+      "detail": "dev-006 replanifiee apres dev-007 (priorite utilisateur) - phase rendue a migrateur_bdd, tache mig-002 ouverte et deleguee a @migrateur-bdd (creation role elect27 + grants + verification connexion) - dev-007 (branchement applicatif) en file d'attente"
+    },
+    {
+      "horodatage": "2026-10-01T16:30:00Z",
+      "agent": "orchestrateur",
+      "action": "pass_mig-002",
+      "statut": "pass",
+      "detail": "PASS - role elect27 cree et verifie (connexion scram avec identifiants .env, 44 grants sur 11 tables, droits ecriture prouves en transaction annulee, 0 donnee persistee, schema intact) - blocage auth leve - transition migrateur_bdd -> developpement, tache dev-007 ouverte"
+    },
+    {
+      "horodatage": "2026-10-01T16:31:00Z",
+      "agent": "orchestrateur",
+      "action": "assignation_dev-007",
+      "statut": "en_cours",
+      "detail": "Tache dev-007 ouverte et deleguee a @developpeur - branchement du backend Flask a PostgreSQL: fin du mode demo, connexion via DATABASE_URL, seeds complets (encoding UTF-8 corrompu a corriger, tables electeurs/cartes_identite/notifications/admin_users a peupler), enregistrement des blueprints routes/ si pertinent - dev-006 reste en file apres dev-007"
+    }
+  ],
+  "autorisations_deleguees": true,
+  "brief_client": "Application web responsive de localisation des lieux de vote pour les elections legislatives et locales 2027 en Republique du Congo. Frontend: HTML/CSS/Tailwind/JS, Backend: Python, BDD: PostgreSQL.",
+  "contraintes": [
+    "Frontend: HTML, CSS, Tailwind CSS, JavaScript",
+    "Backend: Python (Flask)",
+    "Base de donnees: PostgreSQL + PostGIS",
+    "Design: Interface simple et accessible",
+    "Responsive: Mobile-first, 320px-2560px"
+  ],
+  "livrables": {
+    "frontend": [
+      "frontend/index.html - Page d'accueil",
+      "frontend/recherche.html - Page de recherche",
+      "frontend/carte.html - Carte interactive",
+      "frontend/inscription.html - Inscription electorale 3 etapes (CNI)",
+      "frontend/admin/index.html - Dashboard administration + carte electeurs",
+      "frontend/css/main.css - Styles CSS",
+      "frontend/js/api.js - Client API",
+      "frontend/js/carte.js - Module carte",
+      "frontend/js/app.js - Script principal"
+    ],
+    "backend": [
+      "backend/app.py - Application Flask (mode demo)",
+      "backend/config.py - Configuration",
+      "backend/requirements.txt - Dependances",
+      "backend/models/__init__.py - Modeles BDD (11 tables)",
+      "backend/routes/recherche.py - Routes recherche",
+      "backend/routes/geolocalisation.py - Routes geolocalisation",
+      "backend/routes/itineraire.py - Routes itineraire",
+      "backend/routes/notifications.py - Routes notifications",
+      "backend/routes/admin.py - Routes administration + verification CNI",
+      "backend/.env - Variables d'environnement"
+    ],
+    "database": [
+      "database/migrations/versions/001_initial.py - Migration initiale",
+      "database/seeds/init.sql - Donnees initiales"
+    ],
+    "config": [
+      "docker-compose.yml - Configuration Docker",
+      "backend/Dockerfile - Image Docker backend",
+      "nginx.conf - Configuration Nginx",
+      ".gitignore - Fichiers ignores",
+      "demarrer.bat / arreter.bat - Lanceur Windows",
+      "lancer-elect27.ps1 - Lancement local"
+    ],
+    "documentation": [
+      "README.md - Guide projet et installation (v2)",
+      "specifications_techniques.md - Specifications v1.1",
+      "backlog.md - Backlog avec epic 7 inscription",
+      "architecture_initiale.md - Architecture alignee sur le code",
+      "architecture_design_system.md - Design System",
+      "Presentation_Elect27.pptx - Presentation mise a jour"
+    ]
+  },
+  "ecarts_connus": [
+    "carte.html lie vers itineraire.html inexistant (TODO backlog)",
+    "Backend actuel en mode demo (donnees memoire) - branchement PostgreSQL a faire",
+    "CORS origins=['*'] en demo - a restreindre avant production",
+    "Tests (test-001) en cours - requis avant securite/pentest"
+  ]
+}
